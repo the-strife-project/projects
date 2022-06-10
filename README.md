@@ -21,10 +21,10 @@ This tries to explain the purpose of the repositories in the GitHub organization
 Block devices are pieces of hardware that store data. Examples include a SATA hard disk or a CD-ROM drive.
 - 🔧 [AHCI](https://github.com/jotaOS/AHCI). The modern way of connecting to SATA devices: hard disks, SSDs, and CD-ROM drives.
 - 🔧 IDE (TODO, might come in the future). A very old way of connecting to ATA (not SATA, but compatible) devices. For this very reason, it's disgusting to work with, so a very simple PIO driver is implemented, which is _very slow_, and prints a warning every time at boot. It's interesting to do because it's what most VMs select by default.
-- ⚙️ storage (TODO). It provides an abstraction layer over the 🔧s above, by using UUIDs. It's just a way to name all block devices whichever type they are so other services can read and write data to them. Linux used to use `sda`, `sdb`... Windows, `C:`, `D:`...
+- ⚙️ [block](https://github.com/jotaOS/block). It provides an abstraction layer over the 🔧s above, by using UUIDs. It's just a way to name all block devices whichever type they are so other services can read and write data to them. Linux used to use `sda`, `sdb`... Windows, `C:`, `D:`...
 ### Filesystems
 Block devices are just bytes. Filesystems organize the bytes in a way so that they can be interpreted as files and directories.
-- 🔧 ISO9660 (TODO). It's the filesystem that CDs use. So, if you're booting from an ISO file (burnt CD, cloned USB...), you need this.
+- 🔧 [ISO9660](https://github.com/jotaOS/ISO9660). It's the filesystem that CDs use. So, if you're booting from an ISO file (burnt CD, cloned USB...), you need this.
 - 🔧 RAMFS (TODO). When booting from a read-only environment (such as a CD), it's nice if there's still a way to create files. As the name suggests, all files are stored in RAM, so they're lost on poweroff.
 - ⚙️ VFS (TODO). Like with "storage", this is an abstraction level over the above. It provides the concept of mountpoints: one way to represent a directory hierarchy. For example, `/` might be mapped to a RAMFS service, and `/CD` to an ISO9660. Everything inside `/CD/` would be the contents of the CD, and everything outside would be in RAM.
 ## Network stack
@@ -36,7 +36,7 @@ All projects here are optional, since a distro could perfectly not need network 
 ### Protocols
 - 📍 ARP (TODO). Close to the bare metal, network devices are referrenced by their MAC address. ARP translates an IP to a MAC, so a network packet can be sent.
 - 📍 IP (TODO). The base of the Internet. Requires ARP.
-- 📍 ICMP (TODO). Mostly `ping`. Requires IP.
+- 📍 ICMP (TODO). Mostly for issuing and responding to pings. Requires IP.
 - 📍 UDP (TODO). One of the two most commonly used transport layer protocols. Requires IP.
 - 📍 TCP (TODO). The other one. Requires IP.
 
