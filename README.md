@@ -26,7 +26,7 @@ Block devices are pieces of hardware that store data. Examples include a SATA ha
 Block devices are just bytes. Filesystems organize the bytes in a way so that they can be interpreted as files and directories.
 - 🔧 [ISO9660](https://github.com/jotaOS/ISO9660). It's the filesystem that CDs use. So, if you're booting from an ISO file (burnt CD, cloned USB...), you need this.
 - 🔧 RAMFS (TODO). When booting from a read-only environment (such as a CD), it's nice if there's still a way to create files. As the name suggests, all files are stored in RAM, so they're lost on poweroff.
-- ⚙️ VFS (TODO). Like with "storage", this is an abstraction level over the above. It provides the concept of mountpoints: one way to represent a directory hierarchy. For example, `/` might be mapped to a RAMFS service, and `/CD` to an ISO9660. Everything inside `/CD/` would be the contents of the CD, and everything outside would be in RAM.
+- ⚙️ [VFS](https://github.com/jotaOS/VFS). Like with "storage", this is an abstraction level over the above. It provides the concept of mountpoints: one way to represent a directory hierarchy. For example, `/` might be mapped to a RAMFS service, and `/CD` to an ISO9660. Everything inside `/CD/` would be the contents of the CD, and everything outside would be in RAM.
 ## Network stack
 All projects here are optional, since a distro could perfectly not need network access. So 🔧 doesn't really mean 🔧, and ⚙️ doesn't really mean ⚙️.
 ### NICs
