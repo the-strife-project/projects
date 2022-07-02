@@ -22,7 +22,7 @@ Block devices are pieces of hardware that store data. Examples include a SATA ha
 - 🔧 [AHCI](https://github.com/the-strife-project/AHCI). The modern way of connecting to SATA devices: hard disks, SSDs, and CD-ROM drives.
 - 🔧 [ramblock](https://github.com/the-strife-project/ramblock). When booting from a read-only environment (such as a CD), it's nice if there's still a way to create files. As the name suggests, this is a block device that behaves like a hard disk, but it's in RAM.
 - 🔧 IDE (TODO, might come in the future). A very old way of connecting to ATA (not SATA, but compatible) devices. For this very reason, it's disgusting to work with, so a very simple PIO driver is implemented, which is _very slow_, and prints a warning every time at boot. It's interesting to do because it's what most VMs select by default.
-- ⚙️ [block](https://github.com/the-strife-project/block). It provides an abstraction layer over the 🔧s above, by using UUIDs. It's just a way to name all block devices whichever type they are so other services can read and write data to them. Linux used to use `sda`, `sdb`... Windows, `C:`, `D:`...
+- ⚙️ [block](https://github.com/the-strife-project/block). It provides an abstraction layer over the 🔧s above, by using UUIDs. It's just a way to name all block devices whichever type they are so other services can read and write data to them. Linux used to use `sda`, `sdb`, `sdc`...
 ### Filesystems
 Block devices are just bytes. Filesystems organize the bytes in a way so that they can be interpreted as files and directories.
 - 🔧 [ISO9660](https://github.com/the-strife-project/ISO9660). It's the filesystem that CDs use. So, if you're booting from an ISO file (burnt CD, cloned USB...), you need this.
