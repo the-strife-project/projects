@@ -20,12 +20,13 @@ This tries to explain the purpose of the repositories in the GitHub organization
 ### Block devices
 Block devices are pieces of hardware that store data. Examples include a SATA hard disk or a CD-ROM drive.
 - 🔧 [AHCI](https://github.com/the-strife-project/AHCI). The modern way of connecting to SATA devices: hard disks, SSDs, and CD-ROM drives.
+- 🔧 [ramblock](https://github.com/the-strife-project/ramblock). When booting from a read-only environment (such as a CD), it's nice if there's still a way to create files. As the name suggests, this is a block device that behaves like a hard disk, but it's in RAM.
 - 🔧 IDE (TODO, might come in the future). A very old way of connecting to ATA (not SATA, but compatible) devices. For this very reason, it's disgusting to work with, so a very simple PIO driver is implemented, which is _very slow_, and prints a warning every time at boot. It's interesting to do because it's what most VMs select by default.
 - ⚙️ [block](https://github.com/the-strife-project/block). It provides an abstraction layer over the 🔧s above, by using UUIDs. It's just a way to name all block devices whichever type they are so other services can read and write data to them. Linux used to use `sda`, `sdb`... Windows, `C:`, `D:`...
 ### Filesystems
 Block devices are just bytes. Filesystems organize the bytes in a way so that they can be interpreted as files and directories.
 - 🔧 [ISO9660](https://github.com/the-strife-project/ISO9660). It's the filesystem that CDs use. So, if you're booting from an ISO file (burnt CD, cloned USB...), you need this.
-- 🔧 RAMFS (TODO). When booting from a read-only environment (such as a CD), it's nice if there's still a way to create files. As the name suggests, all files are stored in RAM, so they're lost on poweroff.
+- 🔧 [StrifeFS](https://github.com/the-strife-project/StrifeFS). The main filesystem of the OS.
 - ⚙️ [VFS](https://github.com/the-strife-project/VFS). Like with "storage", this is an abstraction level over the above. It provides the concept of mountpoints: one way to represent a directory hierarchy. For example, `/` might be mapped to a RAMFS service, and `/CD` to an ISO9660. Everything inside `/CD/` would be the contents of the CD, and everything outside would be in RAM.
 ## Network stack
 All projects here are optional, since a distro could perfectly not need network access. So 🔧 doesn't really mean 🔧, and ⚙️ doesn't really mean ⚙️.
